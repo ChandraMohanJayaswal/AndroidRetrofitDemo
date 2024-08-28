@@ -3,7 +3,8 @@ package com.anu.todoretrofit.model
 data class Todo(
     val _id: String,
     val created_at: String,
-    val is_completed: Boolean,
+    val updated_at: String,
     val title: String,
-    val updated_at: String
+    val description: String,
+    val is_completed: Boolean,
 )
