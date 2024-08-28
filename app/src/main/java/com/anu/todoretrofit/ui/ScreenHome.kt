@@ -2,12 +2,10 @@ package com.anu.todoretrofit.ui
 
 import android.util.Log
 import androidx.compose.foundation.border
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,9 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.anu.todoretrofit.model.Todo
 import com.anu.todoretrofit.model.TodoPost
 
 @Composable
@@ -57,7 +55,8 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                     Modifier.padding(10.dp)
                         .border(width = 1.dp, color = Color.Gray)
                         .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(Modifier.padding(16.dp)) {
                         var isChecked by remember {
@@ -66,11 +65,11 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                         if (isChecked) {
                             Text(
                                 todo.title,
-                                style = TextStyle(textDecoration = TextDecoration.LineThrough)
+                                style = TextStyle(textDecoration = TextDecoration.LineThrough),
                             )
                         } else {
                             Text(
-                                todo.title
+                                todo.title,
                             )
                         }
                         Checkbox(checked = isChecked, onCheckedChange = {
@@ -83,7 +82,8 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                                 ),
                                 id = todo._id
                             )
-                        })
+                        },
+                            Modifier.padding(horizontal = 20.dp))
                     }
                     Button(onClick = { viewModel.deleteTodo(todo._id) }) {
                         Text("Delete")
