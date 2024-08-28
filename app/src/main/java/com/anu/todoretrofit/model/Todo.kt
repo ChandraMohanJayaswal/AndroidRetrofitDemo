@@ -8,8 +8,3 @@ data class Todo(
     val updated_at: String
 )
 
-data class TodoPost(
-    val title: String,
-    val description: String,
-    val is_completed: Boolean
-)

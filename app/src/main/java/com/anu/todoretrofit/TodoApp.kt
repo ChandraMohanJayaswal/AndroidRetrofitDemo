@@ -8,6 +8,5 @@ import com.anu.todoretrofit.ui.TodoViewModel
 
 @Composable
 fun TodoApp(innerPadding: PaddingValues) {
-    Log.i("todoapp", "hi")
     ScreenHome(innerPadding = innerPadding, viewModel = TodoViewModel())
 }
