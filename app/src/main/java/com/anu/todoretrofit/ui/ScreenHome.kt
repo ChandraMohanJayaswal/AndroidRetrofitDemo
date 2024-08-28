@@ -6,12 +6,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +29,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.anu.todoretrofit.model.TodoPost
@@ -32,11 +37,14 @@ import com.anu.todoretrofit.model.TodoPost
 fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
     val todoList = viewModel.uiState.todoList
     Log.i("Todo List", todoList.toString())
-    Column(modifier = Modifier.padding(innerPadding)) {
+    Column(modifier = Modifier.padding(vertical = innerPadding.calculateTopPadding(), horizontal = 20.dp)) {
         var taskFieldValue by remember {
             mutableStateOf("")
         }
-        OutlinedTextField(value = taskFieldValue, onValueChange = { taskFieldValue = it })
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = taskFieldValue, maxLines = 1, onValueChange = { taskFieldValue = it }
+        )
         Button(onClick = {
             val todo = TodoPost(title = taskFieldValue, description = "Hi", is_completed = false)
             viewModel.createTodo(todo)
@@ -44,6 +52,7 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
         }) {
             Text(text = "Add", maxLines = 1)
         }
+        Spacer(modifier = Modifier.height(20.dp))
         LazyColumn(
             modifier = Modifier
         ) {
@@ -52,7 +61,7 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
             ) { todo ->
                 Log.i("todo todo", todo.toString())
                 Row(
-                    Modifier.padding(10.dp)
+                    Modifier
                         .border(width = 1.dp, color = Color.Gray)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -85,8 +94,8 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                         },
                             Modifier.padding(horizontal = 20.dp))
                     }
-                    Button(onClick = { viewModel.deleteTodo(todo._id) }) {
-                        Text("Delete")
+                    IconButton(onClick = { viewModel.deleteTodo(todo._id) }) {
+                        Icon(imageVector = Icons.Filled.Delete, contentDescription = null)
                     }
                 }
             }
