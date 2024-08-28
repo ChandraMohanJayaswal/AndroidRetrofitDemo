@@ -7,4 +7,3 @@ data class Todo(
     val title: String,
     val updated_at: String
 )
-

@@ -2,9 +2,9 @@ package com.anu.todoretrofit.model
 
 data class TodoParentRes(
     val code: Int = 200,
-    val success: Boolean = true,
-    val timestamp: Long = 1724826077098,
-    val message: String = "Paginated Response",
-    val items : List<Todo> //Date issue
-//    var meta: Meta
+    val success: Boolean,
+    val timestamp: Long,
+    val message: String,
+    val items : List<Todo>,
+    val meta: Meta
 )

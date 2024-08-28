@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -63,7 +64,8 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                 Row(
                     Modifier
                         .border(width = 1.dp, color = Color.Gray)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .wrapContentSize(unbounded = true),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
