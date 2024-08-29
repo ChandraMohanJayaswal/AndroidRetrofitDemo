@@ -68,7 +68,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //retrofit
-    implementation (libs.retrofit)
     implementation(libs.retrofit)
+    implementation(libs.retrofit)
+    //Gson
     implementation(libs.converter.gson)
+
+
+    //dateandtime conversion
+    implementation(libs.kotlinx.datetime)
+
+    //serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 }

@@ -1,6 +1,8 @@
 package com.anu.todoretrofit.ui
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,7 +34,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.anu.todoretrofit.model.TodoPost
+import kotlin.time.Duration.Companion.days
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
     val todoList = viewModel.uiState.todoList
@@ -78,7 +82,7 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                             )
                         } else {
                             Text(
-                                todo.title,
+                                todo.created_at.hour.toString(),
                             )
                         }
                         Checkbox(checked = isChecked, onCheckedChange = {
