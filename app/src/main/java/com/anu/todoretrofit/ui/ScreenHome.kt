@@ -84,7 +84,7 @@ fun ScreenHome(innerPadding: PaddingValues, viewModel: TodoViewModel) {
                             )
                         } else {
                             Text(
-                                todo.created_at.hour.toString(),
+                                todo.title,
                             )
                         }
                         Checkbox(checked = isChecked, onCheckedChange = {
